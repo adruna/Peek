@@ -275,10 +275,6 @@ namespace Screener
             return File.OpenWrite(name + count + "." + FileFormat.ToString());
         }
 
-        #endregion 
-
-        #region Overlay
-
         /// <summary>
         /// Opens the rectangle setting overlay.
         /// </summary>
@@ -293,13 +289,17 @@ namespace Screener
             if (preview.Visible) preview.Hide();
             else preview.Show();
         }
-        #endregion
 
-        #region File Properties
-
+        /// <summary>
+        /// Opens the properties window when the properties button is pressed.
+        /// Also disables capture while open.
+        /// </summary>
         private void OpenProperties(object sender, EventArgs e)
         { if (capturing) { ToggleCapture(); } properties.Show(); Enabled = false; }
 
+        /// <summary>
+        /// Re-enables the Screener form and rebuilds the FileProperties form.
+        /// </summary>
         public void Enable()
         { Enabled = true; properties = new FileProperties(this); }
 
