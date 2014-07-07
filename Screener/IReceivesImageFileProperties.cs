@@ -1,4 +1,5 @@
-﻿namespace Screener
+﻿/* Author: Luke Familo */
+namespace Screener
 {
     /// <summary>
     /// Specifies an object that recieves the kinds of user input that a FileProperties form takes.

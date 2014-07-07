@@ -1,4 +1,5 @@
-﻿using System;
+﻿/* Author: Luke Familo */
+using System;
 using System.IO;
 using System.Drawing;
 using System.Drawing.Imaging;
@@ -244,19 +245,14 @@ namespace Screener
             if (!Directory.Exists(SaveDirectory.FullName)) Directory.CreateDirectory(SaveDirectory.FullName);
 
             Rectangle bounds = (FullScreen) ? Screen.GetBounds(Point.Empty) : rect;
-            using (Bitmap bitmap = new Bitmap(bounds.Width, bounds.Height))
-            {
-                using (Graphics g = Graphics.FromImage(bitmap))
-                {
-                    g.CopyFromScreen(bounds.Location, Point.Empty, bounds.Size);
-                    
-                }
-                Stream stream = getNextStream();
 
-                bitmap.RotateFlip(FlipPair.DrawingFlipType);
-                bitmap.Save(stream, FileFormat);
-                stream.Close();
-            }
+            Bitmap bitmap = new Bitmap(bounds.Width, bounds.Height);
+            Graphics.FromImage(bitmap).CopyFromScreen(bounds.Location, Point.Empty, bounds.Size);
+
+            Stream stream = getNextStream();
+            bitmap.RotateFlip(FlipPair.DrawingFlipType);
+            bitmap.Save(stream, FileFormat);
+            stream.Close();
         }
 
         /// <summary>

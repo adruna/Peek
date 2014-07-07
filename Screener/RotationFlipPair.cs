@@ -1,4 +1,5 @@
-﻿using System;
+﻿/* Author: Luke Familo */
+using System;
 using System.Drawing;
 
 namespace Screener

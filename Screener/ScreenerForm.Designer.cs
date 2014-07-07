@@ -1,4 +1,5 @@
-﻿namespace Screener
+﻿/* Author: Luke Familo */
+namespace Screener
 {
     partial class ScreenerForm
     {

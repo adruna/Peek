@@ -1,4 +1,5 @@
-﻿using System.Windows.Forms;
+﻿/* Author: Luke Familo */
+using System.Windows.Forms;
 
 namespace Screener
 {

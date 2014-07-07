@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿/* Author: Luke Familo */
+using System.Linq;
 using System.Drawing;
 
 namespace Screener

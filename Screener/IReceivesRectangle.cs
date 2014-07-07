@@ -1,4 +1,5 @@
-﻿namespace Screener
+﻿/* Author: Luke Familo */
+namespace Screener
 {
     /// <summary>
     /// Specifies a class that recives a rectangle.
