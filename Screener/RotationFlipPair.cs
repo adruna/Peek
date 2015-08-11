@@ -14,7 +14,7 @@ namespace Screener
         Verticle,
         Both
     }
-    
+
     /// <summary>
     /// Holds a Fliptype and a rotation as a convienince way to store and change a Drawing.RotateFlipType.
     /// </summary>
@@ -26,33 +26,63 @@ namespace Screener
         private int rotation;
 
         #endregion
-        
+
         #region Properties
 
         /// <summary>
         /// Gets or sets the current fliptype to use.
         /// </summary>
         public FlipType Flip
-        { get { return flip; } set { flip = value; } }
+        {
+            get
+            {
+                return flip;
+            }
+            set
+            {
+                flip = value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets the current rotation to use 
         /// Only valid numbers are 0, 90, 180, and 360; any others will be rounded to these values.
         /// </summary>
         public int Rotation
-        { 
-            get { return rotation; } 
-            set 
-            { 
-                rotation = value%360;
-                if (rotation < 0) rotation -= 360;
+        {
+            get
+            {
+                return rotation;
+            }
+            set
+            {
+                rotation = value % 360;
+                if (rotation < 0)
+                {
+                    rotation -= 360;
+                }
 
-                if (rotation < 45) rotation = 0;
-                else if (rotation < 135) rotation = 90;
-                else if (rotation < 225) rotation = 180;
-                else if (rotation < 315) rotation = 270;
-                else rotation = 0;
-            } 
+                if (rotation < 45)
+                {
+                    rotation = 0;
+                }
+                else if (rotation < 135)
+                {
+                    rotation = 90;
+                }
+                else if (rotation < 225)
+                {
+                    rotation = 180;
+                }
+                else if (rotation < 315)
+                {
+                    rotation = 270;
+                }
+                else
+                {
+                    rotation = 0;
+                }
+            }
         }
 
         /// <summary>
@@ -66,11 +96,19 @@ namespace Screener
 
                 switch (flip)
                 {
-                    case FlipType.Horizontal: s += "X"; break;
-                    case FlipType.Verticle: s += "Y"; break;
-                    case FlipType.Both: s += "XY"; break;
+                    case FlipType.Horizontal:
+                        s += "X";
+                        break;
+                    case FlipType.Verticle:
+                        s += "Y";
+                        break;
+                    case FlipType.Both:
+                        s += "XY";
+                        break;
                     case FlipType.None:
-                    default: s += "None"; break;
+                    default:
+                        s += "None";
+                        break;
                 }
 
                 return (RotateFlipType)Enum.Parse(typeof(RotateFlipType), s);
@@ -94,6 +132,7 @@ namespace Screener
 
         #endregion
 
+        // Misleading region name... This isn't what a static constructor is.
         #region StaticConstructor
 
         /// <summary>
@@ -113,36 +152,46 @@ namespace Screener
                 case RotateFlipType.Rotate180FlipX:
                 case RotateFlipType.Rotate180FlipXY:
                 case RotateFlipType.Rotate180FlipY:
-                    rotation = 180; break;
+                    rotation = 180;
+                    break;
 
                 case RotateFlipType.Rotate270FlipNone:
                 case RotateFlipType.Rotate270FlipX:
                 case RotateFlipType.Rotate270FlipXY:
                 case RotateFlipType.Rotate270FlipY:
-                    rotation = 270; break;
+                    rotation = 270;
+                    break;
                 // Rest of the cases have same values as above. (cause the rotation would be equal).
-                default: rotation = 0; break;
+                default:
+                    rotation = 0;
+                    break;
             }
 
             switch (type)
             {
-                case RotateFlipType.Rotate180FlipNone:
-                case RotateFlipType.Rotate270FlipNone:
-                default: flip = FlipType.None; break;
-
                 case RotateFlipType.Rotate180FlipX:
                 case RotateFlipType.Rotate270FlipX:
-                    flip = FlipType.Horizontal; break;
+                    flip = FlipType.Horizontal;
+                    break;
 
                 case RotateFlipType.Rotate180FlipXY:
                 case RotateFlipType.Rotate270FlipXY:
-                    flip = FlipType.Both; break;
+                    flip = FlipType.Both;
+                    break;
 
                 case RotateFlipType.Rotate180FlipY:
                 case RotateFlipType.Rotate270FlipY:
-                    flip = FlipType.Verticle; break;
+                    flip = FlipType.Verticle;
+                    break;
+
+                case RotateFlipType.Rotate180FlipNone:
+                case RotateFlipType.Rotate270FlipNone:
+                default:
+                    flip = FlipType.None;
+                    break;
                 // Rest of the cases have same values as above. (cause the rotation would be equal).
             }
+
             return new RotationFlipPair(flip, rotation);
         }
 

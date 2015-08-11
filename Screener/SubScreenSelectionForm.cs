@@ -34,35 +34,46 @@ namespace Screener
             InitializeComponent();
 
             this.rectangleReceiver = receiver;
-            stopDragging(null, null);
+            StopDragging(null, null);
         }
 
         #endregion
-        
+
         #region Callbacks
 
         /// <summary>
         /// Updates the center rectangle display. (called when bounds are moved and when form becomes visible.
         /// </summary>
-        private void updateRect(object sender, EventArgs e)
+        private void UpdateRect(object sender, EventArgs eventArgs)
         {
-            if (!(sender is Control)) return;
+            if (!(sender is Control))
+            {
+                return;
+            }
             Control control = (Control)sender;
 
-            if (!(bool)control.Tag) return;
-            
+            if (!(bool)control.Tag)
+            {
+                return;
+            }
+
             if (control != center)
             {
-                Point s1 = SEHandle.Bounds.GetMidpoint(), s2 = NWHandle.Bounds.GetMidpoint();
+                Point bottomRight = SEHandle.Bounds.GetMidpoint();
+                Point topLeft = NWHandle.Bounds.GetMidpoint();
 
                 Point upperLeft = new Point(
-                    Math.Min(s1.X, s2.X),
-                    Math.Min(s1.Y, s2.Y));
+                    Math.Min(bottomRight.X, topLeft.X),
+                    Math.Min(bottomRight.Y, topLeft.Y)
+                );
 
-                Size size = Size.Subtract(new Size(
-                    Math.Max(s1.X, s2.X),
-                    Math.Max(s1.Y, s2.Y)),
-                    new Size(upperLeft));
+                Size size = Size.Subtract(
+                    new Size(
+                        Math.Max(bottomRight.X, topLeft.X),
+                        Math.Max(bottomRight.Y, topLeft.Y)
+                    ),
+                    new Size(upperLeft)
+                );
 
                 center.Bounds = new Rectangle(upperLeft, size);
                 center.SendToBack();
@@ -79,34 +90,43 @@ namespace Screener
         /// <summary>
         /// Stop dragging.
         /// </summary>
-        private void stopDragging(object sender, MouseEventArgs e)
-        { SEHandle.Tag = NWHandle.Tag = center.Tag = false; }
+        private void StopDragging(object sender, MouseEventArgs eventArgs)
+        {
+            SEHandle.Tag = NWHandle.Tag = center.Tag = false;
+        }
 
         /// <summary>
         /// Drags the currently selected bound (if there is one).
         /// </summary>
-        private void drag(object sender, MouseEventArgs e)
+        private void Drag(object sender, MouseEventArgs mouseEventArgs)
         {
             // If not a control, exit method.
-            if (!(sender is Control)) return;
+            if (!(sender is Control))
+            {
+                return;
+            }
 
             Control control = (Control)sender;
             if (control.Tag is bool)
             {
                 if ((bool)control.Tag)
+                {
                     control.Location = Point.Subtract(MousePosition, control.Size.Multiple(0.5));
+                }
             }
         }
-        
+
         /// <summary>
         /// Begins dragging the current bound the mouse has just pressed with the left mouse button.
         /// </summary>
-        private void beginDrag(object sender, MouseEventArgs e)
+        private void BeginDrag(object sender, MouseEventArgs mouseEventArgs)
         {
-            if (e.Button == System.Windows.Forms.MouseButtons.Left)
+            if (mouseEventArgs.Button == System.Windows.Forms.MouseButtons.Left)
             {
                 if (sender is Control)
+                {
                     ((Control)sender).Tag = true;
+                }
             }
         }
 
@@ -116,29 +136,50 @@ namespace Screener
         /// When being hidden, send the rectangle to the screener.
         /// When being shown, update the rectangles.
         /// </summary>
-        private void VisibilityChanged(object sender, EventArgs e)
+        private void VisibilityChanged(object sender, EventArgs eventArgs)
         {
-            if (Visible) { Tag = true; updateRect(this, null); Tag = null; }
-            else rectangleReceiver.SetRectangle(center.Bounds); 
+            if (Visible)
+            {
+                Tag = true;
+                UpdateRect(this, null);
+                Tag = null;
+            }
+            else
+            {
+                rectangleReceiver.SetRectangle(center.Bounds);
+            }
         }
 
         /// <summary>
         /// If right mouse is clicked, go back to screener.
         /// </summary>
-        private void Clicked(object sender, MouseEventArgs e)
-        { if (e.Button == MouseButtons.Right) { Hide(); } }
+        private void Clicked(object sender, MouseEventArgs mouseEventArgs)
+        {
+            if (mouseEventArgs.Button == MouseButtons.Right)
+            {
+                Hide();
+            }
+        }
 
         /// <summary>
         /// When esc or enter is pressed, we're finished.
         /// </summary>
-        private void keyUp(object sender, KeyEventArgs e)
-        { if (e.KeyCode == Keys.Escape || e.KeyCode == Keys.Enter) Hide(); }
+        private void OnKeyUp(object sender, KeyEventArgs keyEventArgs)
+        {
+            if (keyEventArgs.KeyCode == Keys.Escape || keyEventArgs.KeyCode == Keys.Enter)
+            {
+                Hide();
+            }
+        }
 
         /// <summary>
         /// When focus is lost (or disabled due to changing to the screener form) we're finished.
         /// </summary>
-        private void FocusLost(object sender, EventArgs e)
-        { stopDragging(null, null); Hide(); }
+        private void FocusLost(object sender, EventArgs eventArgs)
+        {
+            StopDragging(null, null);
+            Hide();
+        }
 
         #endregion
 

@@ -47,10 +47,10 @@ namespace Screener
             this.NWHandle.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.NWHandle.TabIndex = 1;
             this.NWHandle.TabStop = false;
-            this.NWHandle.LocationChanged += new System.EventHandler(this.updateRect);
-            this.NWHandle.MouseDown += new System.Windows.Forms.MouseEventHandler(this.beginDrag);
-            this.NWHandle.MouseMove += new System.Windows.Forms.MouseEventHandler(this.drag);
-            this.NWHandle.MouseUp += new System.Windows.Forms.MouseEventHandler(this.stopDragging);
+            this.NWHandle.LocationChanged += new System.EventHandler(this.UpdateRect);
+            this.NWHandle.MouseDown += new System.Windows.Forms.MouseEventHandler(this.BeginDrag);
+            this.NWHandle.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Drag);
+            this.NWHandle.MouseUp += new System.Windows.Forms.MouseEventHandler(this.StopDragging);
             // 
             // SEHandle
             // 
@@ -63,10 +63,10 @@ namespace Screener
             this.SEHandle.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.SEHandle.TabIndex = 2;
             this.SEHandle.TabStop = false;
-            this.SEHandle.LocationChanged += new System.EventHandler(this.updateRect);
-            this.SEHandle.MouseDown += new System.Windows.Forms.MouseEventHandler(this.beginDrag);
-            this.SEHandle.MouseMove += new System.Windows.Forms.MouseEventHandler(this.drag);
-            this.SEHandle.MouseUp += new System.Windows.Forms.MouseEventHandler(this.stopDragging);
+            this.SEHandle.LocationChanged += new System.EventHandler(this.UpdateRect);
+            this.SEHandle.MouseDown += new System.Windows.Forms.MouseEventHandler(this.BeginDrag);
+            this.SEHandle.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Drag);
+            this.SEHandle.MouseUp += new System.Windows.Forms.MouseEventHandler(this.StopDragging);
             // 
             // center
             // 
@@ -77,10 +77,10 @@ namespace Screener
             this.center.Name = "center";
             this.center.Size = new System.Drawing.Size(200, 100);
             this.center.TabIndex = 3;
-            this.center.LocationChanged += new System.EventHandler(this.updateRect);
-            this.center.MouseDown += new System.Windows.Forms.MouseEventHandler(this.beginDrag);
-            this.center.MouseMove += new System.Windows.Forms.MouseEventHandler(this.drag);
-            this.center.MouseUp += new System.Windows.Forms.MouseEventHandler(this.stopDragging);
+            this.center.LocationChanged += new System.EventHandler(this.UpdateRect);
+            this.center.MouseDown += new System.Windows.Forms.MouseEventHandler(this.BeginDrag);
+            this.center.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Drag);
+            this.center.MouseUp += new System.Windows.Forms.MouseEventHandler(this.StopDragging);
             // 
             // SubScreenSelectionForm
             // 
@@ -101,7 +101,7 @@ namespace Screener
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Deactivate += new System.EventHandler(this.FocusLost);
             this.VisibleChanged += new System.EventHandler(this.VisibilityChanged);
-            this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.keyUp);
+            this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.OnKeyUp);
             this.Leave += new System.EventHandler(this.FocusLost);
             this.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Clicked);
             ((System.ComponentModel.ISupportInitialize)(this.NWHandle)).EndInit();

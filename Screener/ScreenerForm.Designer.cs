@@ -57,9 +57,9 @@ namespace Screener
             this.captureKeyField.ReadOnly = true;
             this.captureKeyField.Size = new System.Drawing.Size(117, 20);
             this.captureKeyField.TabIndex = 2;
-            this.captureKeyField.Enter += new System.EventHandler(this.changeCaptureKey);
-            this.captureKeyField.KeyDown += new System.Windows.Forms.KeyEventHandler(this.keyDown);
-            this.captureKeyField.Leave += new System.EventHandler(this.dontChangeCaptureKey);
+            this.captureKeyField.Enter += new System.EventHandler(this.ChangeCaptureKey);
+            this.captureKeyField.KeyDown += new System.Windows.Forms.KeyEventHandler(this.OnKeyDown);
+            this.captureKeyField.Leave += new System.EventHandler(this.DontChangeCaptureKey);
             // 
             // captureKeyLabel
             // 
@@ -79,7 +79,7 @@ namespace Screener
             this.rectangleCheckBox.TabIndex = 12;
             this.rectangleCheckBox.Text = "Sub Screen";
             this.rectangleCheckBox.UseVisualStyleBackColor = true;
-            this.rectangleCheckBox.CheckedChanged += new System.EventHandler(this.specifyAreaChecked);
+            this.rectangleCheckBox.CheckedChanged += new System.EventHandler(this.SpecifyAreaChecked);
             // 
             // preview
             // 
@@ -92,8 +92,8 @@ namespace Screener
             this.preview.Size = new System.Drawing.Size(91, 47);
             this.preview.TabIndex = 13;
             this.preview.Visible = false;
-            this.preview.VisibleChanged += new System.EventHandler(this.previewVisibilityChanged);
-            this.preview.MouseClick += new System.Windows.Forms.MouseEventHandler(this.openOverlay);
+            this.preview.VisibleChanged += new System.EventHandler(this.PreviewVisibilityChanged);
+            this.preview.MouseClick += new System.Windows.Forms.MouseEventHandler(this.OpenOverlay);
             // 
             // previewRect
             // 
@@ -102,7 +102,7 @@ namespace Screener
             this.previewRect.Name = "previewRect";
             this.previewRect.Size = new System.Drawing.Size(43, 28);
             this.previewRect.TabIndex = 0;
-            this.previewRect.MouseClick += new System.Windows.Forms.MouseEventHandler(this.openOverlay);
+            this.previewRect.MouseClick += new System.Windows.Forms.MouseEventHandler(this.OpenOverlay);
             // 
             // filePropertiesButton
             // 
@@ -127,7 +127,7 @@ namespace Screener
             this.Controls.Add(this.captureButton);
             this.Name = "ScreenerForm";
             this.Text = "Screener";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.onClose);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.OnClose);
             this.preview.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -145,4 +145,3 @@ namespace Screener
         private System.Windows.Forms.Button filePropertiesButton;
     }
 }
-
