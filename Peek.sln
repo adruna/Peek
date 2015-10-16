@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.20827.3
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Screener", "Screener\Screener.csproj", "{3D0DE7CE-E55C-4D72-8090-588EA338C830}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Peek", "Screener\Peek.csproj", "{3D0DE7CE-E55C-4D72-8090-588EA338C830}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
